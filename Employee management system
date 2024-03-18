@@ -1,0 +1,31 @@
+-- Create Employee Table:
+CREATE TABLE Employee (
+    emp_id INT PRIMARY KEY,       -- Unique identifier for each employee
+    name VARCHAR(100),            -- Name of the employee
+    position VARCHAR(100),        -- Job position/title of the employee
+    salary DECIMAL(10, 2)         -- Salary of the employee (with precision up to 10 digits and 2 decimal places)
+);
+
+-- Insert Employee Records:
+INSERT INTO Employee (emp_id, name, position, salary)
+VALUES 
+    (101, 'John Doe', 'Manager', 50000.00),          -- Inserting a manager
+    (102, 'Jane Smith', 'Developer', 60000.00),       -- Inserting a developer
+    (103, 'Alice Johnson', 'HR Specialist', 45000.00);-- Inserting an HR specialist
+-- These queries insert multiple employee records into the Employee table.
+
+-- Display Employee Details:
+SELECT * FROM Employee;
+-- This query retrieves all columns (*) and rows from the Employee table, displaying details of all employees.
+
+-- Search Employee by ID:
+SELECT * FROM Employee WHERE emp_id = 101;
+-- This query retrieves all columns (*) and rows from the Employee table where the emp_id is equal to 101, displaying details of the employee with that ID.
+
+-- Update Employee Salary:
+UPDATE Employee SET salary = 55000.00 WHERE emp_id = 101;
+-- This query updates the salary column of the employee with emp_id 101 to 55000.00 in the Employee table.
+
+-- Delete Employee Record:
+DELETE FROM Employee WHERE emp_id = 103;
+-- This query deletes the employee record with emp_id 103 from the Employee table.
