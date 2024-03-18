@@ -1,0 +1,79 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class EmployeeManagementSystem {
+    WebDriver driver;
+
+    public EmployeeManagementSystem() {
+        // Set the path to ChromeDriver executable
+        System.setProperty("webdriver.chrome.driver", "path_to_chromedriver.exe");
+        // Initialize ChromeDriver
+        driver = new ChromeDriver();
+        // Open the employee management system website
+        driver.get("https://example.com/employee-management");
+    }
+
+    public void addEmployee(int empId, String name, String position, double salary) {
+        // Find the add employee button and click it
+        WebElement addEmployeeButton = driver.findElement(By.id("addEmployeeButton"));
+        addEmployeeButton.click();
+        
+        // Fill in the employee details in the form
+        WebElement empIdField = driver.findElement(By.id("empId"));
+        empIdField.sendKeys(String.valueOf(empId));
+
+        WebElement nameField = driver.findElement(By.id("name"));
+        nameField.sendKeys(name);
+
+        WebElement positionField = driver.findElement(By.id("position"));
+        positionField.sendKeys(position);
+
+        WebElement salaryField = driver.findElement(By.id("salary"));
+        salaryField.sendKeys(String.valueOf(salary));
+
+        // Submit the form
+        WebElement submitButton = driver.findElement(By.id("submitButton"));
+        submitButton.click();
+    }
+
+    public void displayEmployeeDetails() {
+        // Find and click the display employee details button
+        WebElement displayButton = driver.findElement(By.id("displayButton"));
+        displayButton.click();
+
+        // Retrieve and print the employee details
+        WebElement employeeDetails = driver.findElement(By.id("employeeDetails"));
+        System.out.println(employeeDetails.getText());
+    }
+
+    public void searchEmployeeById(int empId) {
+        // Find the search employee field and enter the employee ID
+        WebElement searchField = driver.findElement(By.id("searchField"));
+        searchField.sendKeys(String.valueOf(empId));
+
+        // Click the search button
+        WebElement searchButton = driver.findElement(By.id("searchButton"));
+        searchButton.click();
+
+        // Retrieve and print the search results
+        WebElement searchResults = driver.findElement(By.id("searchResults"));
+        System.out.println(searchResults.getText());
+    }
+
+    public static void main(String[] args) {
+        EmployeeManagementSystem ems = new EmployeeManagementSystem();
+
+        // Example usage:
+        ems.addEmployee(101, "John Doe", "Manager", 50000.00);
+        ems.addEmployee(102, "Jane Smith", "Developer", 60000.00);
+
+        ems.displayEmployeeDetails();
+
+        ems.searchEmployeeById(101);
+
+        // Close the browser window
+        ems.driver.quit();
+    }
+}
